@@ -1,0 +1,21 @@
+# Autodetect text files.
+* text=auto
+
+# Use binary merge driver for project files.
+*.sln       merge=binary eol=crlf
+*.csproj    merge=binary eol=crlf
+*.vbproj    merge=binary eol=crlf
+*.vcxproj   merge=binary eol=crlf
+*.vcproj    merge=binary eol=crlf
+*.dbproj    merge=binary eol=crlf
+*.fsproj    merge=binary eol=crlf
+*.lsproj    merge=binary eol=crlf
+*.wixproj   merge=binary eol=crlf
+*.modelproj merge=binary eol=crlf
+*.sqlproj   merge=binary eol=crlf
+*.wwaproj   merge=binary eol=crlf
+
+# Use CRLF for Windows files.
+*.txt text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
