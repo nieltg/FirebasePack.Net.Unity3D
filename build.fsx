@@ -29,14 +29,14 @@ Target "Build" <| fun _ ->
     |> Log "Build-Output: "
 
 
-Target "Test" <| fun _ ->
-    let nunitRunnerDir = lazy ((getNugetPackage "NUnit.Runners" "2.6.4") @@ "tools")
-    ensureDirectory testDir
-    !! ("./src/**/bin/" + solution.Configuration + "/*.Tests.dll")
-    |> NUnit (fun p ->
-        {p with ToolPath = nunitRunnerDir.Force()
-                DisableShadowCopy = true;
-                OutputFile = testDir @@ "test.xml" })
+// Target "Test" <| fun _ ->
+//     let nunitRunnerDir = lazy ((getNugetPackage "NUnit.Runners" "2.6.4") @@ "tools")
+//     ensureDirectory testDir
+//     !! ("./src/**/bin/" + solution.Configuration + "/*.Tests.dll")
+//     |> NUnit (fun p ->
+//         {p with ToolPath = nunitRunnerDir.Force()
+//                 DisableShadowCopy = true;
+//                 OutputFile = testDir @@ "test.xml" })
 
 Target "PackUnity" <| fun _ ->
     packUnityPackage "./src/UnityPackage.json"
@@ -51,12 +51,12 @@ Target "Help" <| fun _ ->
 "Clean"
   ==> "Restore"
   ==> "Build"
-  ==> "Test"
+//   ==> "Test"
 
 "Build" ==> "PackUnity"
 "PackUnity" ==> "Pack"
 
-"Test" ==> "CI"
+// "Test" ==> "CI"
 "Pack" ==> "CI"
 
 RunTargetOrDefault "Help"
