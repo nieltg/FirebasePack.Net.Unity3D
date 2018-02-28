@@ -1,0 +1,27 @@
+@echo off
+
+pushd %~dp0
+
+SET PACKAGEPATH=.\packages\
+SET NUGET=.\tools\nuget\NuGet.exe
+SET NUGETOPTIONS=-ConfigFile .\tools\nuget\NuGet.Config -OutputDirectory %PACKAGEPATH% -ExcludeVersion
+
+SET FAKE_VERSION=4.64.6
+SET FAKE_BUILDLIB_VERSION=0.3.7
+
+IF NOT EXIST %PACKAGEPATH%FAKE\Ver_%FAKE_VERSION% (
+  RD /S/Q %PACKAGEPATH%FAKE
+  %NUGET% install FAKE -Version %FAKE_VERSION% %NUGETOPTIONS%
+  COPY NUL %PACKAGEPATH%FAKE\Ver_%FAKE_VERSION%
+)
+
+IF NOT EXIST %PACKAGEPATH%FAKE.BuildLib\Ver_%FAKE_BUILDLIB_VERSION% (
+  RD /S/Q %PACKAGEPATH%FAKE.BuildLib
+  %NUGET% install FAKE.BuildLib -Version %FAKE_BUILDLIB_VERSION% %NUGETOPTIONS%
+  COPY NUL %PACKAGEPATH%FAKE.BuildLib\Ver_%FAKE_BUILDLIB_VERSION%
+)
+
+set encoding=utf-8
+"%PACKAGEPATH%FAKE\tools\FAKE.exe" build.fsx %*
+
+popd

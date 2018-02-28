@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "authors": [ "nieltg" ],
+  "owners": [ "nieltg" ],
+  "description": "Firebase.NET libs package for Unity3D",
+  "id": "FirebasePack.Net",
+  "files": [
+    "Firebase.Auth/bin/Release/*.dll",
+    "Firebase.Database/bin/Release/*.dll",
+    "Firebase.Storage/bin/Release/*.dll"
+  ]
+}
