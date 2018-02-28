@@ -57,4 +57,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)..\tools\unity3d\pdb2mdb.exe $(TargetPath)</PostBuildEvent>
+  </PropertyGroup>
 </Project>
